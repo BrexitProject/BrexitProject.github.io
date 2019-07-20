@@ -23,7 +23,7 @@
 <meta property="og:image" content="http://yoursite.com/images/网页加载.png">
 <meta property="og:image" content="http://yoursite.com/images/格式.png">
 <meta property="og:image" content="http://yoursite.com/images/结果.png">
-<meta property="og:updated_time" content="2019-07-20T03:25:18.000Z">
+<meta property="og:updated_time" content="2019-07-20T03:26:43.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="脱欧话题走势">
 <meta name="twitter:description" content="​        2013年1月23日，英国首相卡梅伦首次提及脱欧公投。在2016年2月欧盟峰会后，确定宣布英国于2016年6月23日举行，脱欧阵营以51.9%对留欧阵营48.1%的微弱优势取胜，脱欧拉锯战也自此开始。2019年1月，英国议会下院投票否决了此前英国政府与欧盟达成的脱欧协议。3月，修改后的脱欧协议仍然没有通过。4月，欧盟各国达成一致，同意将脱欧日期延迟至2019年10月31日。 ​">
@@ -102,20 +102,16 @@
 <p><img src="/images/动画截图.png" alt="脱欧话题走势 (截自动画)"></p>
 <p>​        我们一共统计2016年1月至2019年5月，共计41个月的话题走势。具体的可视化动态呈现在<a href="https://brexitproject.github.io/visualization/views/2_hashtag_online" target="_blank" rel="noopener">该网页</a>，代码可于<a href="https://github.com/BrexitProject/visualization" target="_blank" rel="noopener">该仓库</a>获取。其中，红色的话题代表支持脱欧话题，灰色为中立话题，蓝色为支持留欧的话题，该倾向值的计算方式可参考<a href>该文章</a>。</p>
 <p>​        下面将结合代码详细介绍话题数据如何使用Python 3获取数据，清理，并进一步分析获取结果。</p>
-<p>#数据来源</p>
-<ul>
+<h1 id="数据来源"><a href="#数据来源" class="headerlink" title="数据来源"></a>数据来源</h1><ul>
 <li><p>201601 至201905 包含特定hashtag的推特 Top 分类推文，以月为单位</p>
 <p><img src="/images/top分类.png" alt="Top分类是指网页版推特在检索时的该页面"></p>
 </li>
 </ul>
-<p>#分析工具</p>
-<ul>
+<h1 id="分析工具"><a href="#分析工具" class="headerlink" title="分析工具"></a>分析工具</h1><ul>
 <li>Python 3.6.5 </li>
 <li>使用到的库：NumPy,  Re, BeautifulSoup, selenium</li>
 </ul>
-<p>#数据获取及分析过程</p>
-<p>##安装chrome及chromedriver</p>
-<ol>
+<h1 id="数据获取及分析过程"><a href="#数据获取及分析过程" class="headerlink" title="数据获取及分析过程"></a>数据获取及分析过程</h1><h2 id="安装chrome及chromedriver"><a href="#安装chrome及chromedriver" class="headerlink" title="安装chrome及chromedriver"></a>安装chrome及chromedriver</h2><ol>
 <li><p>在官网下载chromedriver，需要与已安装的chrome的版本对应，下载地址为： <a href="http://chromedriver.storage.googleapis.com/index.html" target="_blank" rel="noopener">http://chromedriver.storage.googleapis.com/index.html</a></p>
 </li>
 <li><p>将chromedriver的安装路径粘贴到系统变量中（参考python的环境变量配置） </p>
@@ -124,8 +120,7 @@
 <p><img src="/images/chromedriver.png" alt="检查 chromedriver 配置是否完成"></p>
 </li>
 </ol>
-<p>##安装需要的Python包</p>
-<ul>
+<h2 id="安装需要的Python包"><a href="#安装需要的Python包" class="headerlink" title="安装需要的Python包"></a>安装需要的Python包</h2><ul>
 <li><p>如果本机已安装pip（ Python 3.4+ 以上版本都自带 pip 工具），则直接在终端运行以下两条命令安装BeautifulSoup 和 selenium包。</p>
 <p><code>pip install beautifulsoup4</code></p>
 <p><code>pip install selenium</code></p>
@@ -133,8 +128,7 @@
 <li><p>若本机未安装pip，可参考<a href="https://www.runoob.com/w3cnote/python-pip-install-usage.html" target="_blank" rel="noopener">该教程</a>安装pip并了解如何使用pip进行包管理。另外，easy_install 等包管理工具也可用于安装所需的包。</p>
 </li>
 </ul>
-<p>##获取github代码</p>
-<ul>
+<h2 id="获取github代码"><a href="#获取github代码" class="headerlink" title="获取github代码"></a>获取github代码</h2><ul>
 <li><p>在终端中执行</p>
 <p><code>git clone https://github.com/BrexitProject/TweetsMining.git</code></p>
 <p>git 的详细命令可参考<a href="https://www.runoob.com/git/git-remote-repo.html" target="_blank" rel="noopener">该教程</a>。</p>
@@ -142,8 +136,7 @@
 <li><p>也可以在<a href="https://github.com/BrexitProject/TweetsMining.git" target="_blank" rel="noopener">网页中</a>直接选择download zip, 获得代码压缩包。</p>
 </li>
 </ul>
-<p>##执行代码获取相关数据</p>
-<ol>
+<h2 id="执行代码获取相关数据"><a href="#执行代码获取相关数据" class="headerlink" title="执行代码获取相关数据"></a>执行代码获取相关数据</h2><ol>
 <li><p>在view.py文件中设置起始月份(start变量)与结束月份(stop变量)，格式为YYYYMM。</p>
 <p><img src="/images/日期设置.png" alt="日期设置"></p>
 </li>
@@ -176,7 +169,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/25/脱欧话题走势/" data-id="cjyayz45b0002tmm9ehg2x6jd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/25/脱欧话题走势/" data-id="cjyaz17j10002umm9ln6z6uvo" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
