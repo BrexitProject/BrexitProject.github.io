@@ -62,6 +62,121 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-以话题关键词采集推特" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/以话题关键词采集推特/" class="article-date">
+  <time datetime="2019-07-31T16:23:24.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Collect-Tweets-by-Hashtag"><a href="#Collect-Tweets-by-Hashtag" class="headerlink" title="Collect Tweets by Hashtag"></a>Collect Tweets by Hashtag</h1><p>使用自动化测试工具 Selenium 实现自动访问推文检索页面并滚动到页面最底，等待网页动态加载完成之后保存成 .html 文件，来收集对应月份对应 hashtag 的推文。</p>
+<p>存储格式是新建 crawl 文件夹，其中包含以每个 hashtag 命名的子文件夹，子文件夹中存放推文的 html 数据，命名为 201601、201602 等，六位字符串。如下。</p>
+<p>└─crawl<br>    ├─#hashtag1<br>    │      201601<br>    │      201602<br>    │      201603<br>    │<br>    └─#hashtag2<br>            201601<br>            201602<br>            201603</p>
+<p>Selenium 的运行需要浏览器驱动的支持，在这里使用了 Chrome 驱动来加载，并且设置禁止所有 Flash、声音、图片等内容，加快进度。</p>
+<p>需要抓取的 hashtag 放在一个文件中，程序每次读取一个 hashtag，然后遍历需要收集的月份，每次新的请求 URL 都通过字符串拼接的方式完成。一个请求的 URL 格式如下：</p>
+<p><a href="https://twitter.com/search?l=en&amp;q=%23brexit%20since%3A2016-01-01%20until%3A2016-01-31&amp;src=typd" target="_blank" rel="noopener">https://twitter.com/search?l=en&amp;q=%23brexit%20since%3A2016-01-01%20until%3A2016-01-31&amp;src=typd</a></p>
+<p>每次只需更改 q= 关键字，since 和 until 起止时间。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/以话题关键词采集推特/" data-id="cjytifl660000b4yexkkkg5er" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-采集脱欧相关的新闻文章" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/08/01/采集脱欧相关的新闻文章/" class="article-date">
+  <time datetime="2019-07-31T16:01:06.000Z" itemprop="datePublished">2019-08-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="NewsTextMining"><a href="#NewsTextMining" class="headerlink" title="NewsTextMining"></a>NewsTextMining</h1><h2 id="BrexitNews-收集"><a href="#BrexitNews-收集" class="headerlink" title="BrexitNews 收集"></a>BrexitNews 收集</h2><p>利用 <a href="https://scrapy.org/" target="_blank" rel="noopener">scrapy</a> 框架爬取英国和其他国家主要媒体 <a href="https://dailymail.co.uk/" target="_blank" rel="noopener">DailyMail</a>，<a href="https://dailystar.co.uk/" target="_blank" rel="noopener">DailyStar</a>，<a href="https://economist.com/" target="_blank" rel="noopener">Economist</a>，<a href="https://express.co.uk/" target="_blank" rel="noopener">Express</a>，<a href="https://ft.com/" target="_blank" rel="noopener">FT</a>，<a href="https://inews.co.uk/" target="_blank" rel="noopener">iNews</a>，<a href="https://mirror.co.uk/" target="_blank" rel="noopener">Mirror</a>，<a href="https://theguardian.com/" target="_blank" rel="noopener">The Guardian</a>，<a href="https://thesun.co.uk/" target="_blank" rel="noopener">The Sun</a> 等，在 2016 年 6 月 16 日—2016 年 6 月 24 日期间（公投前一周）的有关脱欧话题的新闻稿。</p>
+<p>所记录的域包含新闻标题、发表日期、正文内容、发表媒体等。</p>
+<p>得到总共 2000 多篇新闻稿。</p>
+<h2 id="标记新闻"><a href="#标记新闻" class="headerlink" title="标记新闻"></a>标记新闻</h2><p>选取一些新闻语料进行人工标记判断，是留欧还是脱欧派的新闻。有一些倾向性模糊的语料废弃，不加入训练。一些文章可按段落拆解，一部分段落是留欧倾向，一部分则相反。</p>
+<h2 id="新闻分类"><a href="#新闻分类" class="headerlink" title="新闻分类"></a>新闻分类</h2><p>可使用 <a href="https://fasttext.cc/" target="_blank" rel="noopener">FastText</a> 或按照 hashtag 中所述的 SVM 的方法对新闻进行二分类。</p>
+<p>然后对每家媒体的每一篇新闻稿做出预测，可以估计出一家媒体的观点倾向。从结果来看，<strong>留欧倾向</strong>比较明显的媒体是 theguardian，<strong>脱欧倾向</strong>比较明显的是 dailymail，其余介于两者之间。</p>
+<h2 id="关键词提取"><a href="#关键词提取" class="headerlink" title="关键词提取"></a>关键词提取</h2><p>同 hashtag 中倾向性的刻画。不同的是 hashtag 中需要做分析的特征是我们指定的若干 hashtag，而在此处需要分析的特征是出现在这些新闻中的所有单词。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/08/01/采集脱欧相关的新闻文章/" data-id="cjytifl6g0006b4yelfdmpxk9" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-计算话题的脱欧倾向性" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/30/计算话题的脱欧倾向性/" class="article-date">
+  <time datetime="2019-07-30T15:09:30.000Z" itemprop="datePublished">2019-07-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Hashtag-Mining"><a href="#Hashtag-Mining" class="headerlink" title="Hashtag Mining"></a>Hashtag Mining</h1><h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p>输出选定的 hashtag 集合的倾向性数值 <code>x</code>，范围 <code>0&lt;=x&lt;=1</code>。</p>
+<p>1 表示完全脱欧倾向，0 表示完全留欧倾向。越靠近 1 代表脱欧倾向越明显，越靠近 0 留欧倾向越明显。靠近 0.5 的可以认为是中立。</p>
+<h2 id="1-抓取原始数据"><a href="#1-抓取原始数据" class="headerlink" title="1. 抓取原始数据"></a>1. 抓取原始数据</h2><p>抓取 2016 年 1 月至 2019 年 5 月的推文数据。刚开始在 <code>#brexit</code> 和 <code>#referendum</code> 的“热门”分类下收集推文，但是发现一个有意思的事情——收集到的有关 <code>#strongerin</code> 的推文都和预计的正好相反，这本来应该是一个强留欧的话题，但混入了大量的脱欧派言论。许多推文甚至说的完全就是脱欧的观点，打了其他许多脱欧的标签，然后加上一个 <code>#strongerin</code>。猜测原因是脱欧派会去干扰其他留欧民众所讨论的话题，这一点未经验证。</p>
+<p>最后，按照所需要的 hashtag 来抓取每个月的推文数据，其详细方法见项目下的 collect。（还可以使用推特开发者账户API来获取原始推文，需国外手机号。）</p>
+<h2 id="2-标记数据"><a href="#2-标记数据" class="headerlink" title="2. 标记数据"></a>2. 标记数据</h2><p>构建分类模型首先需要训练数据，需要一些已经标记好“留欧”还是“脱欧”观点的推文。但是，传统的通过人工的方法难以在短时间完成标记。所以在这里，我们用了预定义分类标签的方法。</p>
+<p>其中有一些 hashtag 是带有很的强烈情感倾向的，不需要特别判断其他内容就能了解这一段推文的倾向。例如，带有 <code>#voteleave</code> 话题的推文，几乎可以肯定说的是脱欧。</p>
+<p>因此，我们将带有以下话题的推文预先打上脱欧的标记：<code>#voteleave，#marchtoleave，#takecontrol，#leaveeu，#standup4brexit，#no2eu，#nodeal</code>。将带有以下话题的推文预先打上留欧的标记：<code>#voteremain，#peoplesvotemarch，#bremain，#remainernow，#abtv，#yeseu，#strongerin</code>。根据我们的验证，这一步中话题的选取是比较关键的，会直接影响最后生成的数值，需要仔细斟酌。最后生成的代表两派的推文数量有所差别，随机选取相等数量的推文作为正负两类的训练数据。</p>
+<h2 id="3-构建分类器模型"><a href="#3-构建分类器模型" class="headerlink" title="3. 构建分类器模型"></a>3. 构建分类器模型</h2><p>利用 <a href="https://zh.wikipedia.org/wiki/支持向量机" target="_blank" rel="noopener">SVM</a> 分类模型对抓取到的所有推文进行“脱欧VS留欧”的二分类。</p>
+<p>首先需要对原始的推文进行清洗，删去超链接、非英文字符等，然后统一格式化成两个单词中包含一个空格的形式，最后转成英文小写。数据的清洗对于结果也至关重要，可以去除一些无用的语义信息。</p>
+<p>利用 <a href="https://zh.wikipedia.org/wiki/Tf-idf" target="_blank" rel="noopener">TF-IDF</a> 来抽取特征信息，分析器使用“词语”，词的模式 token_pattern 用正则表达式 <code>r&#39;[a-z|\#]\w+\b&#39;</code> 表示，意思是字母或 # 开头的，后跟一个或多个非空字符直到单词边界，最小计数可自行尝试。（亦可使用 doc2vec 等词嵌入的方法进行向量化，但速度稍慢）</p>
+<p>最后把向量化标记好的正负两类数据输入到 SVM  分类模型中，学习出一个能够分类脱欧还是留欧倾向推文的分类器。使用线性核，C 惩罚值根据验证集的表现可做调整。最后分类精度在验证集上能够达到 0.95 的准确率。</p>
+<p>将收集到的所有推文输入到 SVM 分类器中进行二分类，得分类完成的正反两类推文。</p>
+<h2 id="4-刻画倾向值"><a href="#4-刻画倾向值" class="headerlink" title="4. 刻画倾向值"></a>4. 刻画倾向值</h2><p><a href="https://zh.wikipedia.org/wiki/朴素贝叶斯分类器" target="_blank" rel="noopener">朴素贝叶斯</a> 是一种基于概率的模型，能够输出指定条件下是某一分类的概率。用 sklearn 库下的 <code>feature_log_prob_</code> 来输出指定类的各特征的概率。他的计算是 <code>feature_log_prob_ = ln(某类下某属性中某值出现的次数 + alpha) / (某类下所有特征出现次数之和 + 类的个数 * alpha))</code>，其中 alpha 是拉普拉斯平滑系数。比较两类的每个 hashtag 的特征概率值，可以算出某个特征（hashtag）倾向于某类的特征。</p>
+<p>使用多项式贝叶斯，设置参数不学习先验概率，重新用前面分完类的所有数据当成已知标签的数据，构造贝叶斯模型。最后可以生成每一个 hashtag 所对应的倾向性分值。</p>
+<h2 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h2><ul>
+<li>is_leave.py：根据预定义的标签生成带标记的训练数据。</li>
+<li>get_number.py：根据抓取的 html 生成转推量与发推量统计。（按月份抓取时用，crawl 文件夹中存放每个月命名的文件夹，二级目录中存放这个月的所有 html）。</li>
+<li>get_number_by_tag.py：根据抓取的 html 生成转推量与发推量统计。（按 hashtag 抓取时用， crawl 文件夹中存放每个 hashtag 命名的文件夹，二级目录中依次存放这个 hashtag 按月的 html 数据）。</li>
+<li>build.py：训练和构建分类模型，生成 models 文件夹，存放模型。输出验证集精度。</li>
+<li>classify.py：将 tweets 文件夹中的推文分类，生成 classifier_result 文件夹，存放结果。</li>
+<li>evaluate.py：利用分类完成的结果，构建贝叶斯，输出每个 hashtag 评价。</li>
+</ul>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><p>[1] Lopez J C A D , Collignon-Delmar S , Benoit K , et al. Predicting the Brexit Vote by Tracking and Classifying Public Opinion Using Twitter Data[J]. Statistics, Politics and Policy, 2017, 8(1).</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/30/计算话题的脱欧倾向性/" data-id="cjytifl6f0005b4yefmzn1mri" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-脱欧话题走势" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2019/05/25/脱欧话题走势/" class="article-date">
@@ -158,7 +273,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/05/25/脱欧话题走势/" data-id="cjyazpm5f00016im9ks4ux7w4" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/05/25/脱欧话题走势/" data-id="cjytifl6b0002b4yektlh9q7h" class="article-share-link">Share</a>
       
       
   <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Python/">Python</a></li></ul>
@@ -205,7 +320,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/30/hello-world/" data-id="cjyazpm5h00026im9vpv8p5tk" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/04/30/hello-world/" data-id="cjytifl690001b4yeyy76wfa7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -247,7 +362,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/08/">August 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/05/">May 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li></ul>
     </div>
   </div>
 
@@ -258,6 +373,18 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2019/08/01/以话题关键词采集推特/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/08/01/采集脱欧相关的新闻文章/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2019/07/30/计算话题的脱欧倾向性/">(no title)</a>
+          </li>
         
           <li>
             <a href="/2019/05/25/脱欧话题走势/">脱欧话题走势</a>
