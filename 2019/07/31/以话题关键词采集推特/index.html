@@ -5,15 +5,19 @@
   
 
   
-  <title>Archives: 2019/5 | Brexit_ZJU</title>
+  <title>Brexit_ZJU</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="以话题关键词采集推特使用自动化测试工具 Selenium 实现自动访问推文检索页面并滚动到页面最底，等待网页动态加载完成之后保存成 .html 文件，来收集对应月份对应 hashtag 的推文。 存储格式是新建 crawl 文件夹，其中包含以每个 hashtag 命名的子文件夹，子文件夹中存放推文的 html 数据，命名为 201601、201602 等，六位字符串。如下。 └─crawl">
+<meta property="og:type" content="article">
 <meta property="og:title" content="Brexit_ZJU">
-<meta property="og:url" content="http://yoursite.com/archives/2019/05/index.html">
+<meta property="og:url" content="http://yoursite.com/2019/07/31/以话题关键词采集推特/index.html">
 <meta property="og:site_name" content="Brexit_ZJU">
+<meta property="og:description" content="以话题关键词采集推特使用自动化测试工具 Selenium 实现自动访问推文检索页面并滚动到页面最底，等待网页动态加载完成之后保存成 .html 文件，来收集对应月份对应 hashtag 的推文。 存储格式是新建 crawl 文件夹，其中包含以每个 hashtag 命名的子文件夹，子文件夹中存放推文的 html 数据，命名为 201601、201602 等，六位字符串。如下。 └─crawl">
 <meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2019-08-02T02:51:29.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Brexit_ZJU">
+<meta name="twitter:description" content="以话题关键词采集推特使用自动化测试工具 Selenium 实现自动访问推文检索页面并滚动到页面最底，等待网页动态加载完成之后保存成 .html 文件，来收集对应月份对应 hashtag 的推文。 存储格式是新建 crawl 文件夹，其中包含以每个 hashtag 命名的子文件夹，子文件夹中存放推文的 html 数据，命名为 201601、201602 等，六位字符串。如下。 └─crawl">
   
     <link rel="alternate" href="/atom.xml" title="Brexit_ZJU" type="application/atom+xml">
   
@@ -60,40 +64,48 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2019/05/25/脱欧话题走势/" class="archive-article-date">
-  <time datetime="2019-05-25T16:49:10.000Z" itemprop="datePublished">May 25</time>
+        <section id="main"><article id="post-以话题关键词采集推特" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/07/31/以话题关键词采集推特/" class="article-date">
+  <time datetime="2019-07-31T16:23:24.000Z" itemprop="datePublished">2019-07-31</time>
 </a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/05/25/脱欧话题走势/">脱欧话题走势</a>
-    </h1>
-  
-
-    </header>
+    
   </div>
-</article>
-  
-  
-    </div></section>
-  
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="以话题关键词采集推特"><a href="#以话题关键词采集推特" class="headerlink" title="以话题关键词采集推特"></a>以话题关键词采集推特</h1><p>使用自动化测试工具 Selenium 实现自动访问推文检索页面并滚动到页面最底，等待网页动态加载完成之后保存成 .html 文件，来收集对应月份对应 hashtag 的推文。</p>
+<p>存储格式是新建 crawl 文件夹，其中包含以每个 hashtag 命名的子文件夹，子文件夹中存放推文的 html 数据，命名为 201601、201602 等，六位字符串。如下。</p>
+<p>└─crawl<br>    ├─#hashtag1<br>    │      201601<br>    │      201602<br>    │      201603<br>    │<br>    └─#hashtag2<br>            201601<br>            201602<br>            201603</p>
+<p>Selenium 的运行需要浏览器驱动的支持，在这里使用了 Chrome 驱动来加载，并且设置禁止所有 Flash、声音、图片等内容，加快进度。</p>
+<p>需要抓取的 hashtag 放在一个文件中，程序每次读取一个 hashtag，然后遍历需要收集的月份，每次新的请求 URL 都通过字符串拼接的方式完成。一个请求的 URL 格式如下：</p>
+<p><a href="https://twitter.com/search?l=en&amp;q=%23brexit%20since%3A2016-01-01%20until%3A2016-01-31&amp;src=typd" target="_blank" rel="noopener">https://twitter.com/search?l=en&amp;q=%23brexit%20since%3A2016-01-01%20until%3A2016-01-31&amp;src=typd</a></p>
+<p>每次只需更改 q= 关键字，since 和 until 起止时间。</p>
 
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/07/31/以话题关键词采集推特/" data-id="cjzex2izp000085m9hvs2q2jc" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/31/采集脱欧相关的新闻文章/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
 
 </section>
         
