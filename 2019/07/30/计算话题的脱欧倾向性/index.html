@@ -14,7 +14,7 @@
 <meta property="og:site_name" content="Brexit_ZJU">
 <meta property="og:description" content="计算话题的脱欧倾向性目的输出选定的 hashtag 集合的倾向性数值 x，范围 0&amp;lt;=x&amp;lt;=1。 1 表示完全脱欧倾向，0 表示完全留欧倾向。越靠近 1 代表脱欧倾向越明显，越靠近 0 留欧倾向越明显。靠近 0.5 的可以认为是中立。 1. 抓取原始数据抓取 2016 年 1 月至 2019 年 5 月的推文数据。刚开始在 #brexit 和 #referendum 的“热门”分类下收">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-08-02T02:51:20.000Z">
+<meta property="og:updated_time" content="2020-01-15T15:38:31.644Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Brexit_ZJU">
 <meta name="twitter:description" content="计算话题的脱欧倾向性目的输出选定的 hashtag 集合的倾向性数值 x，范围 0&amp;lt;=x&amp;lt;=1。 1 表示完全脱欧倾向，0 表示完全留欧倾向。越靠近 1 代表脱欧倾向越明显，越靠近 0 留欧倾向越明显。靠近 0.5 的可以认为是中立。 1. 抓取原始数据抓取 2016 年 1 月至 2019 年 5 月的推文数据。刚开始在 #brexit 和 #referendum 的“热门”分类下收">
@@ -92,8 +92,6 @@
 <p>使用多项式贝叶斯，设置参数不学习先验概率，重新用前面分完类的所有数据当成已知标签的数据，构造贝叶斯模型。最后可以生成每一个 hashtag 所对应的倾向性分值。</p>
 <h2 id="相关文件"><a href="#相关文件" class="headerlink" title="相关文件"></a>相关文件</h2><ul>
 <li>is_leave.py：根据预定义的标签生成带标记的训练数据。</li>
-<li>get_number.py：根据抓取的 html 生成转推量与发推量统计。（按月份抓取时用，crawl 文件夹中存放每个月命名的文件夹，二级目录中存放这个月的所有 html）。</li>
-<li>get_number_by_tag.py：根据抓取的 html 生成转推量与发推量统计。（按 hashtag 抓取时用， crawl 文件夹中存放每个 hashtag 命名的文件夹，二级目录中依次存放这个 hashtag 按月的 html 数据）。</li>
 <li>build.py：训练和构建分类模型，生成 models 文件夹，存放模型。输出验证集精度。</li>
 <li>classify.py：将 tweets 文件夹中的推文分类，生成 classifier_result 文件夹，存放结果。</li>
 <li>evaluate.py：利用分类完成的结果，构建贝叶斯，输出每个 hashtag 评价。</li>
@@ -103,7 +101,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/07/30/计算话题的脱欧倾向性/" data-id="cjzex2j00000685m9gd3r9jlj" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2019/07/30/计算话题的脱欧倾向性/" data-id="ck5fh0pdy0003i5lk0doi95xk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -206,7 +204,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2019 ZJU_WC<br>
+      &copy; 2020 ZJU_WC<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
